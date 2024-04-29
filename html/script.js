@@ -15,7 +15,7 @@ function counterReducer(state = initialState, action) {
   if (action.type === "increment") {
     return {
       ...state,
-      value: state.value + 2,
+      value: state.value + action.payload,
     };
   } else if (action.type === "decrement") {
     return {
@@ -39,9 +39,10 @@ counter;
 
 store.subscribe(render);
 
-incrementInput.addEventListener("enter", () => {
+incrementInput.addEventListener("input", () => {
   store.dispatch({
     type: "increment",
+    payload: parseInt(incrementInput.value), // Use the value entered in the input field
   });
 });
 
